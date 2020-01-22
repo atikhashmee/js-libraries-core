@@ -21,6 +21,11 @@
           {
               super();
               this.state = {
+                  post:{
+                    id:0,
+                    title:'',
+                    body:'',
+                  },
                   name:'',
                   age:23,
                   mystud :[
@@ -37,6 +42,44 @@
            this.setState({name:evt.target.value});
         }
 
+        titleChangeHandler = (evt) => {
+            const p = this.state.post;
+            p.title = evt.target.value;
+            this.setState({
+                post :{...p}
+                });
+        }
+
+        bodyChangeHandler = (evt) => {
+            const p = this.state.post;
+            p.body = evt.target.value;
+            this.setState({
+                post :{...p}
+                });
+        }
+
+        formData = (evt) =>{
+            evt.preventDefault();
+            let foDat = this.state.post;
+             foDat.id = 101245;
+            if(foDat.title === '')
+            {
+                alert('title can\'t be an empty state');
+                return;
+            }
+            
+            let posts = this.state.posts;
+            posts.push(foDat);
+            this.setState({posts:[...posts]});
+        }
+
+        resetFormData = () =>{
+            let f = this.state.post;
+            f.title = "";
+            f.body = "";
+            f.id = 0;
+            this.setState({post:{...f}});
+        }
         addButtonHandler = ()=> {
             let vl = this.state.name;
             if(vl !== '')
@@ -60,22 +103,40 @@
             this.getPosts();
         }
           render(){
+              let reveresed = this.state.posts.reverse();
               return   <div className="container">
                         <div className="row">
                             <div className="col">
                                 <div className="card card-body">
-                                    <form>
-                        <input type="text" className="form-control" name='name' onChange={this.nameChangeHandler} />
-                        <button type="button" className="btn btn-success" onClick={this.addButtonHandler}>Submit</button>
-                            </form>
-                            <ul className="list-group">
-                                {this.state.mystud.map((obj,i)=><li className="list-group-item" key={i}>{obj.name}</li>)}
-                            </ul>
+                                    <form onSubmit={this.formData}>
+                                        <input type="text" className="form-control" name='name' onChange={this.titleChangeHandler} value={this.state.post.title} />
+                                        <textarea  className="form-control" cols="30" onChange={this.bodyChangeHandler} value={this.state.post.body}   rows="10"></textarea>
+                                        <button className="btn btn-success">Submit</button>
+                                    </form>
                                 </div>
+                               <div className="card card-body">
+                                 <table className="table table-bordered">
+                                    <thead>
+                                     <tr>
+                                        <th>#sl</th>
+                                        <th>Title</th>
+                                        <th>Details</th>
+                                        <th>Action</th>
+                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                        {reveresed.map((obj,i)=> 
+                                        <tr key={i}> 
+                                            <td>{obj.id}</td> 
+                                            <td>{obj.title}</td> 
+                                            <td>{obj.body}</td> 
+                                            <td> <span className="badge badge-warning">Edit</span> </td> 
+                                        </tr>)}
+                                    </tbody>
+                                 </table>
+                               </div>
+                                
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="col"></div>
                         </div>
                 </div>;
           }
