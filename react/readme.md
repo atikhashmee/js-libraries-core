@@ -12,7 +12,7 @@ React js handle textarea with ```value```
 so this will be similar to other to single line input, [see more](https://reactjs.org/docs/forms.html#the-textarea-tag)
 
 ## get the value from textarea 
-```sh
+```javascript
  bodyChangeHandler = (evt) => {
             const p = this.state.post;
             p.body = evt.target.value;
@@ -21,7 +21,7 @@ so this will be similar to other to single line input, [see more](https://reactj
                 });
         }
 ```
-```
+```html
  <form onSubmit={this.formData}>
                                         <input type="text" className="form-control" name='name' onChange={this.titleChangeHandler} value={this.state.post.title} />
                                         <textarea  className="form-control" cols="30" onChange={this.bodyChangeHandler} value={this.state.post.body}   rows="10"></textarea>
