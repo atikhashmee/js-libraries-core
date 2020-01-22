@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+   <div id="root"></div>
+   <script type="text/babel">
+
+      class App extends React.Component {
+          constructor()
+          {
+              super();
+              this.state = {
+                  name:'',
+                  age:23,
+                  mystud :[
+                 {name:"atik",age:25},
+                 {name:"siyam",age:26},
+                 {name:"ridwan",age:30},
+                 {name:"sudip",age:26},
+                ],
+                posts:[],
+              }
+          }
+
+        nameChangeHandler = (evt)=>{
+           this.setState({name:evt.target.value});
+        }
+
+        addButtonHandler = ()=> {
+            let vl = this.state.name;
+            if(vl !== '')
+            {
+               let newar = [...this.state.mystud];
+               newar.push({name:vl,age:34});
+               this.setState({mystud : [...newar]});
+               this.setState({name:""});
+             }
+             console.log(this);
+        }
+
+        getPosts = () =>{
+              let that  = this;
+              fetch('https://jsonplaceholder.typicode.com/posts')
+              .then(function(res) { return res.json();})
+              .then(function(res) {
+                  that.setState({posts:res});
+              });
+        }
+        componentDidMount(){
+            this.getPosts();
+        }
+          render(){
+              return   <div className="container">
+                        <div className="row">
+                            <div className="col">
+                                <div className="card card-body">
+                                    <form>
+                        <input type="text" className="form-control" name='name' onChange={this.nameChangeHandler} />
+                        <button type="button" className="btn btn-success" onClick={this.addButtonHandler}>Submit</button>
+                            </form>
+                            <ul className="list-group">
+                                {this.state.mystud.map((obj,i)=><li className="list-group-item" key={i}>{obj.name}</li>)}
+                            </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col"></div>
+                        </div>
+                </div>;
+          }
+      }
+       ReactDOM.render(<App/>, document.getElementById('root'));
+   </script>
+</body>
+</html>

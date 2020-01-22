@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>angular pondit</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="myapp" ng-controller="myctl">
+        <h1>{{name}}</h1>
+        <ul>
+             <li ng-repeat="std in mystud">{{ std.name }}</li>
+         </ul>
+    </div>
+<script>
+var app = angular.module('myapp', []);
+app.controller('myctl', function($scope) {
+  $scope.mystud = [
+                 {name:"atik",age:25},
+                 {name:"siyam",age:26},
+                 {name:"ridwan",age:30},
+                 {name:"sudip",age:26},
+             ];
+             $scope.name = "atik";
+             $scope.addThing = function(obj)
+             {
+                 console.log('pussy');
+                 $scope.mystud.push(obj);
+             }
+});
+
+</script>
+</body>
+</html>
