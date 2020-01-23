@@ -29,3 +29,32 @@ so this will be similar to other to single line input, [see more](https://reactj
                                     </form>
 ```
 
+# React Hook
+==============================
+
+So from React 16.8 , we can use `function` as components and let's you do the things you could do in a class `component`
+
+*Important* thing to keep in mind while you using `CDN` that   `useState()` may throw an error 
+
+so in order use it properly , we have to use `React.userState()` because its defined in the `React` object. 
+[more](https://github.com/FormidableLabs/react-live/issues/114)
+
+## example 
+```javascript
+ <div id="root"></div>
+   <script type="text/babel">
+        function Example(){
+            const [count, setCount] =React.useState(0);
+            return (
+                    <div>
+                        <p>You clicked {count} times</p>
+                        <button onClick={() => setCount(count + 1)}>
+                            Click me
+                        </button>
+                    </div>
+            );
+        }
+
+       ReactDOM.render(<Example/>, document.getElementById('root'));
+   </script>
+```

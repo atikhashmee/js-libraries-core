@@ -67,7 +67,6 @@
                 alert('title can\'t be an empty state');
                 return;
             }
-            
             let posts = this.state.posts;
             posts.push(foDat);
             this.setState({posts:[...posts]});
@@ -125,17 +124,16 @@
                                      </tr>
                                     </thead>
                                     <tbody>
-                                        {reveresed.map((obj,i)=> 
-                                        <tr key={i}> 
-                                            <td>{obj.id}</td> 
-                                            <td>{obj.title}</td> 
-                                            <td>{obj.body}</td> 
-                                            <td> <span className="badge badge-warning">Edit</span> </td> 
+                                        {reveresed.map((obj,i)=>
+                                        <tr key={i}>
+                                            <td>{obj.id}</td>
+                                            <td>{obj.title}</td>
+                                            <td>{obj.body}</td>
+                                            <td> <span className="badge badge-warning">Edit</span> </td>
                                         </tr>)}
                                     </tbody>
                                  </table>
                                </div>
-                                
                             </div>
                         </div>
                 </div>;
