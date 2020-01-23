@@ -58,3 +58,24 @@ so in order use it properly , we have to use `React.userState()` because its def
        ReactDOM.render(<Example/>, document.getElementById('root'));
    </script>
 ```
+
+# React hook use `useState()` with object
+
+initialize the object
+```javascript
+  const [post, setPost] = React.useState({title:"",body:"",id:0});
+```
+similar to 
+
+```javascript
+ constructor()
+    {
+        super();
+        this.state = {
+        post:{
+            id:0,
+            title:'',
+            body:'',
+            },
+    }
+```
